@@ -1,0 +1,166 @@
+---
+title: "CodeBook"
+author: "David Lyons"
+date: "19/04/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This CodeBook describes the transformation from raw data to the tidy datasets as part of the Getting and Cleaning data Assignment.  The tidy data variables and script used to transform the raw data is described in this document. 
+
+## Raw Data Set
+
+The original data can be found here:
+
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
+
+
+The dataset includes the following files :
+
+- features_info.txt: Gives explanation about the variables used.
+- features.txt: Lists all variables
+- activity_labels.txt: Links the activity identifier with the activity name.
+- train/X_train.txt: Training data set.
+- train/y_train.txt: Links the training data to the activity name.
+- train/subject_test.txt: Links the data collected to the subject identifier
+- test/X_test.txt: Test data set.
+- test/y_test.txt: Links the test data to the activity name.
+- test/subject_test.txt: Links the data collected to the subject identifier
+- README.txt: General information about the dataset.
+
+Reference:
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
+
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
+
+## Description of Data Units of Measurement
+
+The files contain data collected during the training and test phases for 30 subjects. The data collected in each phase is equivalent.
+The acceleration signal from the smartphone accelerometer X, Y and Z axis is in standard gravity units 'g'. Every row shows a 128 element vector. 
+The angular velocity vector measured by the gyroscope for each window sample uses measurement units in radians/second. 
+
+## Files required for data transformation
+
+- features.txt: Identifies each of the 561 variable names
+- activity_labels.txt: Contains each of the  6 activity identifier and activity name
+- xTest.txt: Contains the test measurements for each of the 561 variables 
+- yTest.txt: Contains the activity Identifier 
+- subjectTest.txt: Contains the subject Identifier
+- xTrain.txt: Contains the training measurements for each of the 561 variables 
+- yTrain.txt: Contains the activity Identifier 
+- subjectTrain.txt: Contains the subject Identifier
+
+
+
+## The run_analysis.R script
+
+### Requirements of the script is as follows:
+
+- Merges the training and the test sets to create one data set.
+- Extracts only the measurements on the mean and standard deviation for each measurement.
+- Uses descriptive activity names to name the activities in the data set.
+- Appropriately labels the data set with descriptive activity names.
+- Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+### Functions of run_analysis.R Script are:
+
+- Downloads the dataset from the URL mentioned above and unzips it to create UCI HAR Dataset folder.
+- Imports required files specified above and generates the appropriate data frames.
+- Merges the training and the test sets and includes a column to identify which test set the data originated from.
+- Extracts a subset of data including only those measurements with "mean" and "std" in the variable names.
+- Updates the variable names in dataframe by removing spurious double brackets “()”.
+- Updates activity identifiers with descriptive text. 
+- Generates a second data frame with average of each measurement variable for each activity and each subject
+- Writes both tidy data frames to new csv files
+
+## Variable descriptions
+
+The following are descriptions for the complete tidy data file "samsung_data.csv":
+
+- **subjectNumber** Identifies subject by subject identifier.
+- **traintest** Identifies phase origin of data, ‘test’ or ‘train’. 
+- **activity** Activity description WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+- **tBodyAccMeanX** Average of mean value time domain body acceleration in x direction
+- **tBodyAccMeanY** Average of mean value time domain body acceleration in Y direction
+- **tBodyAccMeanZ** Average of mean value time domain body acceleration in Z direction
+- **tBodyAccStdX** Average of standard deviation time domain body acceleration in x direction
+- **tBodyAccStdY** Average of standard deviation time domain body acceleration in Y direction
+- **tBodyAccStdZ** Average of standard deviation time domain body acceleration in Z direction
+- **tGravityAccMeanX** Average of mean value time domain gravity accelerationin x direction
+- **tGravityAccMeanY** Average of mean value time domain gravity accelerationin Y direction
+- **tGravityAccMeanZ** Average of mean value time domain gravity accelerationin Z direction
+- **tGravityAccStdX** Average of standard deviation time domain gravity accelerationin x direction
+- **tGravityAccStdY** Average of standard deviation time domain gravity accelerationin Y direction
+- **tGravityAccStdZ** Average of standard deviation time domain gravity accelerationin Z direction
+- **tBodyAccJerkMeanX** Average of mean value time domain body acceleration jerk in x direction
+- **tBodyAccJerkMeanY** Average of mean value time domain body acceleration jerk in Y direction
+- **tBodyAccJerkMeanZ** Average of mean value time domain body acceleration jerk in Z direction
+- **tBodyAccJerkStdX** Average of standard deviation time domain body acceleration jerk in x direction
+- **tBodyAccJerkStdY** Average of standard deviation time domain body acceleration jerk in Y direction
+- **tBodyAccJerkStdZ** Average of standard deviation time domain body acceleration jerk in Z direction
+- **tBodyGyroMeanX** Average of mean value time domain body gyro in x direction
+- **tBodyGyroMeanY** Average of mean value time domain body gyro in Y direction
+- **tBodyGyroMeanZ** Average of mean value time domain body gyro in Z direction
+- **tBodyGyroStdX** Average of standard deviation time domain body gyro in x direction
+- **tBodyGyroStdY** Average of standard deviation time domain body gyro in Y direction
+- **tBodyGyroStdZ** Average of standard deviation time domain body gyro in Z direction
+- **tBodyGyroJerkMeanX** Average of mean value time domain body gyro Jerk signal in x direction
+- **tBodyGyroJerkMeanY** Average of mean value time domain body gyro Jerk signal in Y direction
+- **tBodyGyroJerkMeanZ** Average of mean value time domain body gyro Jerk signal in Z direction
+- **tBodyGyroJerkStdX** Average of standard deviation time domain body gyro Jerk signal in x direction
+- **tBodyGyroJerkStdY** Average of standard deviation time domain body gyro Jerk signal in Y direction
+- **tBodyGyroJerkStdZ** Average of standard deviation time domain body gyro Jerk signal in Z direction
+- **tBodyAccMagMean** Average of mean value time domain body acceleration magnitude
+- **tBodyAccMagStd** Average of standard deviation time domain body acceleration magnitude
+- **tGravityAccMagMean** Average of mean value time domain gravity acceleration magnitude
+- **tGravityAccMagStd** Average of standard deviation time domain gravity acceleration magnitude
+- **tBodyAccJerkMagMean** Average of mean value time domain body acceleration jerk magnitude
+- **tBodyAccJerkMagStd** Average of standard deviation time domain body acceleration jerk magnitude
+- **tBodyGyroMagMean** Average of mean value time domain body gyro magnitude
+- **tBodyGyroMagStd** Average of standard deviation time domain body gyro magnitude
+- **tBodyGyroJerkMagMean** Average of mean value time domain body gyro Jerk magnitude
+- **tBodyGyroJerkMagStd** Average of standard deviation time domain body gyro Jerk magnitude
+- **fBodyAccMeanX** Average of mean value frequency domain body acceleration in x direction
+- **fBodyAccMeanY** Average of mean value frequency domain body acceleration in Y direction
+- **fBodyAccMeanZ** Average of mean value frequency domain body acceleration in Z direction
+- **fBodyAccStdX** Average of standard deviation frequency domain body acceleration in x direction
+- **fBodyAccStdY** Average of standard deviation frequency domain body acceleration in Y direction
+- **fBodyAccStdZ** Average of standard deviation frequency domain body acceleration in Z direction
+- **fBodyAccJerkMeanX** Average of mean value frequency domain body acceleration jerk in x direction
+- **fBodyAccJerkMeanY** Average of mean value frequency domain body acceleration jerk in Y direction
+- **fBodyAccJerkMeanZ** Average of mean value frequency domain body acceleration jerk in Z direction
+- **fBodyAccJerkStdX** Average of standard deviation frequency domain body acceleration jerk in x direction
+- **fBodyAccJerkStdY** Average of standard deviation frequency domain body acceleration jerk in Y direction
+- **fBodyAccJerkStdZ** Average of standard deviation frequency domain body acceleration jerk in Z direction
+- **fBodyGyroMeanX** Average of mean value frequency domain body gyro in x direction
+- **fBodyGyroMeanY** Average of mean value frequency domain body gyro in Y direction
+- **fBodyGyroMeanZ** Average of mean value frequency domain body gyro in Z direction
+- **fBodyGyroStdX** Average of standard deviation frequency domain body gyro in x direction
+- **fBodyGyroStdY** Average of standard deviation frequency domain body gyro in Y direction
+- **fBodyGyroStdZ** Average of standard deviation frequency domain body gyro in Z direction
+- **fBodyAccMagMean** Average of mean value frequency domain body acceleration magnitude
+- **fBodyAccMagStd** Average of standard deviation frequency domain body acceleration magnitude
+- **fBodyBodyAccJerkMagMean** Average of mean value frequency domain body acceleration jerk magnitude
+- **fBodyBodyAccJerkMagStd** Average of standard deviation frequency domain body acceleration jerk magnitude
+- **fBodyBodyGyroMagMean** Average of mean value frequency domain body body gyro magnitude
+- **fBodyBodyGyroMagStd** Average of standard deviation frequency domain body body gyro magnitude
+- **fBodyBodyGyroJerkMagMean** Average of mean value frequency domain body body gyro jerk magnitude
+- **fBodyBodyGyroJerkMagStd** Average of standard deviation frequency domain body body gyro jerk magnitude
+
+
+The following describes the measurement averages data file "samsung_data_average.csv":
+
+- **Avrg_SubjectActivity** List of subjects and activities for which the averages have been taken for.
+
+All measured variables use the same names as used in the tidy data set prefixed with "Avrg_" to differentiate the table data.
+
+

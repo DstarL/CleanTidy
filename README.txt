@@ -38,9 +38,9 @@ The additional files produced by this work are:
 
 - 'README.txt'
 
-- 'samsung_data.csv' which is the merged output of the test and the train data and includes the subject identifier and the activities.
+- 'samsung_data.txt' which is the merged output of the test and the train data and includes the subject identifier and the activities.
 
-- 'samsung_data_average.csv' which includes the measurement averages for each of the 6 activities and also for each of the 30 subjects.
+- 'samsung_data_average.txt' which includes the measurement averages for each of the 6 activities and also for each of the 30 subjects.
 
 - 'run_analysis.R This script downloads the raw data and wrangles it into the previously noted files.
 

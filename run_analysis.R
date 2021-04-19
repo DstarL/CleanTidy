@@ -79,6 +79,6 @@ names(DT2)[names(DT2) == "Group.1"] <- "SubjectActivity"
 colnames(DT2) <- paste("Avrg", colnames(DT2), sep = "_")
 
 # Output data tables
-write.csv(DT, "samsung_data.csv")
-write.csv(DT2, "samsung_data_average.csv")
+write.table(DT, "samsung_data.txt")
+write.table(DT2, "samsung_data_average.txt")
 

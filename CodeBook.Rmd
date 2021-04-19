@@ -80,11 +80,11 @@ The angular velocity vector measured by the gyroscope for each window sample use
 - Updates the variable names in dataframe by removing spurious double brackets “()”.
 - Updates activity identifiers with descriptive text. 
 - Generates a second data frame with average of each measurement variable for each activity and each subject
-- Writes both tidy data frames to new csv files
+- Writes both tidy data frames to new txt files
 
 ## Variable descriptions
 
-The following are descriptions for the complete tidy data file "samsung_data.csv":
+The following are descriptions for the complete tidy data file "samsung_data.txt":
 
 - **subjectNumber** Identifies subject by subject identifier.
 - **traintest** Identifies phase origin of data, ‘test’ or ‘train’. 
@@ -157,7 +157,7 @@ The following are descriptions for the complete tidy data file "samsung_data.csv
 - **fBodyBodyGyroJerkMagStd** Average of standard deviation frequency domain body body gyro jerk magnitude
 
 
-The following describes the measurement averages data file "samsung_data_average.csv":
+The following describes the measurement averages data file "samsung_data_average.txt":
 
 - **Avrg_SubjectActivity** List of subjects and activities for which the averages have been taken for.
 

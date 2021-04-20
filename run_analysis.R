@@ -6,11 +6,11 @@
 
 # Libraries to include
 library(dplyr)
-library(stringr)
+#library(stringr)
 library(tidyr)
-library(lubridate)
-library(data.table)
-library(readr)
+#library(lubridate)
+#library(data.table)
+#library(readr)
 
 # Dataset Download and read files
 if(!file.exists("./data")){dir.create("./data")}
@@ -65,8 +65,11 @@ DTtrain <- cbind(s_train, DTtrain)
 # Merge Test and Train data
 DT <- rbind(DTtest, DTtrain)
 
-# Remove double brackets from column names
+# Improve readability of column names
+# Variable meanings are too complex to express by column naming alone
+# and should be decoded using the CodeBook.
 names(DT) <- sub("\\()", "", names(DT))
+names(DT) <- gsub("-", "_", names(DT))
 
 # Use descriptive activity names
 DT[1:nrow(DT),3] <- activity_label[DT[1:nrow(DT),3],2]
@@ -79,6 +82,6 @@ names(DT2)[names(DT2) == "Group.1"] <- "SubjectActivity"
 colnames(DT2) <- paste("Avrg", colnames(DT2), sep = "_")
 
 # Output data tables
-write.table(DT, "samsung_data.txt")
-write.table(DT2, "samsung_data_average.txt")
+write.table(DT, "samsung_data.txt", row.name=FALSE)
+write.table(DT2, "samsung_data_average.txt", row.name=FALSE)
 
